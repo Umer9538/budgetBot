@@ -1,0 +1,45 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "budgetbox-79af2",
+          "appId": "1:197971182074:android:afc69f070dd554ba532443",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "budgetbox-79af2",
+          "appId": "1:197971182074:ios:0e4c822046336e8c532443",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "budgetbox-79af2",
+          "appId": "1:197971182074:ios:0e4c822046336e8c532443",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "budgetbox-79af2",
+          "configurations": {
+            "android": "1:197971182074:android:afc69f070dd554ba532443",
+            "ios": "1:197971182074:ios:0e4c822046336e8c532443",
+            "macos": "1:197971182074:ios:0e4c822046336e8c532443",
+            "web": "1:197971182074:web:e449ef551b34a7ce532443",
+            "windows": "1:197971182074:web:8eb1783894d8c570532443"
+          }
+        }
+      }
+    }
+  }
+}

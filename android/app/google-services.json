@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "197971182074",
+    "project_id": "budgetbox-79af2",
+    "storage_bucket": "budgetbox-79af2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197971182074:android:afc69f070dd554ba532443",
+        "android_client_info": {
+          "package_name": "com.example.budgetbot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOgkRvTAdXdnOGWl5PezoDlbJPMyyAlBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
