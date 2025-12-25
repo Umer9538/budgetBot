@@ -114,12 +114,21 @@ class _BudgetSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spacingLg),
       decoration: BoxDecoration(
-        color: theme.colorScheme.primaryContainer,
+        color: isDark
+            ? theme.colorScheme.surfaceContainerHighest
+            : theme.colorScheme.primaryContainer,
         borderRadius: AppDimensions.borderRadiusLg,
+        border: isDark
+            ? Border.all(
+                color: theme.colorScheme.primary.withOpacity(0.3),
+                width: 1,
+              )
+            : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +136,9 @@ class _BudgetSummaryCard extends StatelessWidget {
           Text(
             'Monthly Overview',
             style: theme.textTheme.titleSmall?.copyWith(
-              color: theme.colorScheme.onPrimaryContainer,
+              color: isDark
+                  ? theme.colorScheme.onSurface
+                  : theme.colorScheme.onPrimaryContainer,
             ),
           ),
           const SizedBox(height: AppDimensions.spacingMd),
@@ -141,13 +152,17 @@ class _BudgetSummaryCard extends StatelessWidget {
                     '\$${summary.remaining.toStringAsFixed(2)}',
                     style: theme.textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.onPrimaryContainer,
+                      color: isDark
+                          ? theme.colorScheme.onSurface
+                          : theme.colorScheme.onPrimaryContainer,
                     ),
                   ),
                   Text(
                     'Remaining',
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onPrimaryContainer.withOpacity(0.7),
+                      color: isDark
+                          ? theme.colorScheme.onSurfaceVariant
+                          : theme.colorScheme.onPrimaryContainer.withOpacity(0.7),
                     ),
                   ),
                 ],
@@ -159,13 +174,17 @@ class _BudgetSummaryCard extends StatelessWidget {
                     '${(summary.percentUsed * 100).toInt()}%',
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.onPrimaryContainer,
+                      color: isDark
+                          ? theme.colorScheme.primary
+                          : theme.colorScheme.onPrimaryContainer,
                     ),
                   ),
                   Text(
                     'Used',
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onPrimaryContainer.withOpacity(0.7),
+                      color: isDark
+                          ? theme.colorScheme.onSurfaceVariant
+                          : theme.colorScheme.onPrimaryContainer.withOpacity(0.7),
                     ),
                   ),
                 ],
@@ -177,11 +196,13 @@ class _BudgetSummaryCard extends StatelessWidget {
             borderRadius: AppDimensions.borderRadiusSm,
             child: LinearProgressIndicator(
               value: summary.percentUsed.clamp(0.0, 1.0),
-              backgroundColor: theme.colorScheme.onPrimaryContainer.withOpacity(0.2),
+              backgroundColor: isDark
+                  ? theme.colorScheme.outline.withOpacity(0.3)
+                  : theme.colorScheme.onPrimaryContainer.withOpacity(0.2),
               valueColor: AlwaysStoppedAnimation(
                 summary.percentUsed > 0.9
                     ? theme.colorScheme.error
-                    : theme.colorScheme.onPrimaryContainer,
+                    : theme.colorScheme.primary,
               ),
               minHeight: 8,
             ),
@@ -190,7 +211,9 @@ class _BudgetSummaryCard extends StatelessWidget {
           Text(
             '\$${summary.totalSpent.toStringAsFixed(2)} of \$${summary.totalBudget.toStringAsFixed(2)}',
             style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onPrimaryContainer.withOpacity(0.7),
+              color: isDark
+                  ? theme.colorScheme.onSurfaceVariant
+                  : theme.colorScheme.onPrimaryContainer.withOpacity(0.7),
             ),
           ),
         ],

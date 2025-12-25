@@ -236,20 +236,32 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
             i.priority == InsightPriority.critical)
         .length;
     final actionable = insights.where((i) => i.actionable && !i.isRead).length;
+    final isDark = theme.brightness == Brightness.dark;
 
     return Container(
       margin: const EdgeInsets.all(AppDimensions.spacingMd),
       padding: const EdgeInsets.all(AppDimensions.spacingMd),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            theme.colorScheme.primaryContainer,
-            theme.colorScheme.primaryContainer.withValues(alpha: 0.7),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: isDark
+            ? theme.colorScheme.surfaceContainerHighest
+            : null,
+        gradient: isDark
+            ? null
+            : LinearGradient(
+                colors: [
+                  theme.colorScheme.primaryContainer,
+                  theme.colorScheme.primaryContainer.withValues(alpha: 0.7),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
         borderRadius: AppDimensions.borderRadiusLg,
+        border: isDark
+            ? Border.all(
+                color: theme.colorScheme.primary.withOpacity(0.3),
+                width: 1,
+              )
+            : null,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -375,6 +387,7 @@ class _SummaryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Column(
       children: [
@@ -391,13 +404,17 @@ class _SummaryItem extends StatelessWidget {
           value,
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
-            color: theme.colorScheme.onPrimaryContainer,
+            color: isDark
+                ? theme.colorScheme.onSurface
+                : theme.colorScheme.onPrimaryContainer,
           ),
         ),
         Text(
           label,
           style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onPrimaryContainer.withValues(alpha: 0.8),
+            color: isDark
+                ? theme.colorScheme.onSurfaceVariant
+                : theme.colorScheme.onPrimaryContainer.withValues(alpha: 0.8),
           ),
         ),
       ],
